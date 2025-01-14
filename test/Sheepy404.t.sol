@@ -5,8 +5,6 @@ import "./utils/SoladyTest.sol";
 import "../src/Sheepy404.sol";
 import "../src/Sheepy404Mirror.sol";
 
-import "solady/utils/LibClone.sol";
-
 contract Sheepy404Test is SoladyTest {
     Sheepy404 sheepy;
     Sheepy404Mirror mirror;

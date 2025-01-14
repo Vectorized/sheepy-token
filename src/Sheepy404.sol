@@ -70,6 +70,11 @@ contract Sheepy404 is DN404, SheepyBase {
         }
     }
 
+    /// @dev For public querying.
+    function unit() public view returns (uint256) {
+        return _unit();
+    }
+
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                           REVEAL                           */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
@@ -106,6 +111,11 @@ contract Sheepy404 is DN404, SheepyBase {
     /// @dev Sets the reveal price.
     function setRevealPrice(uint256 newRevealPrice) public onlyOwnerOrRole(ADMIN_ROLE) {
         revealPrice = newRevealPrice;
+    }
+
+    /// @dev Sets the `skipNFT` status for `target`.
+    function setSkipNFTFor(address target, bool skipNFT) public onlyOwnerOrRole(ADMIN_ROLE) {
+        _setSkipNFT(target, skipNFT);
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
