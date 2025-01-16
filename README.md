@@ -36,3 +36,5 @@ function initialize(
 
 Here, `notSoSecret` is `SomethingSomethingNoGrief`.
 
+## Setting up the Sale Schedules
+
