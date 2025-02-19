@@ -184,4 +184,19 @@ contract Sheepy404 is DN404, SheepyBase {
     function _useAfterNFTTransfers() internal virtual override returns (bool) {
         return true;
     }
+
+    /// @dev Returns the default skip NFT flag for `owner`.
+    function _skipNFTDefault(address owner) internal view virtual override returns (bool result) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            // Use assembly to avoid importing an interface.
+            mstore(0x00, 0x87cf8b78) // `agwMessageTypeHash()`.
+            let t := staticcall(gas(), owner, 0x1c, 0x04, 0x00, 0x20)
+            // If the `owner` is definitely not an AGW, then we shall use the default behavior
+            // of skipping NFT only for `owner`s that are not smart contracts (i.e. EOAs).
+            if iszero(and(iszero(iszero(shr(128, mload(0x00)))), t)) {
+                result := iszero(iszero(extcodesize(owner)))
+            }
+        }
+    }
 }
